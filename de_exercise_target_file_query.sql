@@ -1,3 +1,8 @@
+/*
+DE Exercise
+Assumptions/questions will be presented verbally via Google Slides.
+*/
+
 SELECT 
   p.patientid AS patient_id
 , p.Sex
@@ -7,6 +12,7 @@ SELECT
 , ISNULL(p.primary_care_provider,'No Current PCP') AS primary_care_provider
 --some meds (primarily IV) without simple generic name, these also lacked RXNorm/NDC
 , ISNULL(m.medication_simple_generic_name,'No Med Simple Generic Name') AS medication_simple_generic_name
+--dosage stored as varchar...would want to test whether TRY_CAST might be used in larger data sample to prevent failures of CAST
 , AVG(CAST(m.minimum_dose AS NUMERIC(18,2))) AS avg_minimum_dose
 , m.dose_unit
 , e.admit_diagnosis
